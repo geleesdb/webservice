@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wqlp6xqu04&submodules=panorama,geocoder"></script>
+    <link rel= "stylesheet" type="text/css" href="style.css">
+    <title>상권분석 서비스</title>
+
+</head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body class="home">
+<div class="container-fluid display-table">
+    <div class="row display-table-row">
+        <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+            <div class="logo">
+                <a hef="home.html">
+                    <!--<img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo" class="hidden-xs hidden-sm">-->
+                    <!--<img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">-->
+                </a>
+            </div>
+            <div class="navi">
+                <ul>
+                    <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span
+                            class="hidden-xs hidden-sm">Home</span></a></li>
+                    <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-11 display-table-cell v-align">
+            <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+            <div class="row">
+                <header>
+                    <div class="col-md-7">
+                        <nav class="navbar-default pull-left">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas"
+                                        data-target="#side-menu" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="search hidden-xs hidden-sm">
+                            <input type="text" placeholder="Search" id="address">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="header-rightside">
+                            <ul class="list-inline header-top pull-right">
+                                <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal"
+                                                         data-target="#add_project">Add Project</a></li>
+                                <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                <li>
+                                    <a href="#" class="icon-info">
+                                        <i class="fa fa-bell" aria-hidden="true"></i>
+                                        <span class="label label-primary">3</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!--<img src="http://jskrishna.com/work/merkury/images/user-pic.jpg" alt="user">-->
+                                        <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="navbar-content">
+                                                <span>JS Krishna</span>
+                                                <p class="text-muted small">
+                                                    me@jskrishna.com
+                                                </p>
+                                                <div class="divider">
+                                                </div>
+                                                <a href="#" class="view btn-sm active">View Profile</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="user-dashboard">
+                <h1>지도검색</h1>
+                <div class="row">
+                    <div id="map" style="height:400px;"></div>
+                </div>
+            </div>
+            <div id="chart_img" style="display: none;">
+                <br/><br/>
+                <h1>통계자료</h1>
+                <img src="cs.jpg" alt="user">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="add_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Add Project</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Project Title" name="name">
+                    <input type="text" placeholder="Post of Post" name="mail">
+                    <input type="text" placeholder="Author" name="passsword">
+                    <textarea placeholder="Desicrption"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    var map = new naver.maps.Map("map", {
+        center: new naver.maps.LatLng(37.3595316, 127.1052133),
+        zoom: 10,
+        mapTypeControl: true
+    });
+
+    var infoWindow = new naver.maps.InfoWindow({
+        anchorSkew: true
+    });
+
+    map.setCursor('pointer');
+
+    function searchCoordinateToAddress(latlng) {
+
+        infoWindow.close();
+
+        naver.maps.Service.reverseGeocode({
+            coords: latlng,
+            orders: [
+                naver.maps.Service.OrderType.ADDR,
+                naver.maps.Service.OrderType.ROAD_ADDR
+            ].join(',')
+        }, function (status, response) {
+            if (status === naver.maps.Service.Status.ERROR) {
+                return alert('Something Wrong!');
+            }
+
+            var items = response.v2.results,
+                address = '',
+                htmlAddresses = [];
+
+            for (var i = 0, ii = items.length, item, addrType; i < ii; i++) {
+                item = items[i];
+                address = makeAddress(item) || '';
+                addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
+
+                htmlAddresses.push((i + 1) + '. ' + addrType + ' ' + address);
+            }
+
+            infoWindow.setContent([
+                '<div style="padding:10px;min-width:200px;line-height:150%;">',
+                '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
+                htmlAddresses.join('<br />'),
+                '</div>'
+            ].join('\n'));
+
+            infoWindow.open(map, latlng);
+        });
+    }
+
+    function searchAddressToCoordinate(address) {
+        naver.maps.Service.geocode({
+            query: address
+        }, function (status, response) {
+            if (status === naver.maps.Service.Status.ERROR) {
+                return alert('Something Wrong!');
+            }
+
+            if (response.v2.meta.totalCount === 0) {
+                return alert('totalCount' + response.v2.meta.totalCount);
+            }
+
+            var htmlAddresses = [],
+                item = response.v2.addresses[0],
+                point = new naver.maps.Point(item.x, item.y);
+
+            if (item.roadAddress) {
+                htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+            }
+
+            if (item.jibunAddress) {
+                htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+            }
+
+            if (item.englishAddress) {
+                htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+            }
+
+            infoWindow.setContent([
+                '<div style="padding:10px;min-width:200px;line-height:150%;">',
+                '<h4 style="margin-top:5px;">검색 주소 : ' + address + '</h4><br />',
+                htmlAddresses.join('<br />'),
+                '</div>'
+            ].join('\n'));
+
+            map.setCenter(point);
+            infoWindow.open(map, point);
+        });
+    }
+
+    function initGeocoder() {
+        map.addListener('click', function (e) {
+            searchCoordinateToAddress(e.coord);
+        });
+
+        $('#address').on('keydown', function (e) {
+            var keyCode = e.which;
+            const val  = $('#address').val();
+            if (keyCode === 13) { // Enter Key
+                    // 검색 스크립트
+                if(val == '충남 천안시 서북구 성환읍 성산샘길 45'){
+                    $('#chart_img').show();
+                }else{
+                    $('#chart_img').hidden();
+                }
+
+                searchAddressToCoordinate($('#address').val());
+            }
+        });
+
+        $('#submit').on('click', function (e) {
+            e.preventDefault();
+
+            searchAddressToCoordinate($('#address').val());
+        });
+
+        searchAddressToCoordinate('정자동 178-1');
+    }
+
+    function makeAddress(item) {
+        if (!item) {
+            return;
+        }
+
+        var name = item.name,
+            region = item.region,
+            land = item.land,
+            isRoadAddress = name === 'roadaddr';
+
+        var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
+
+        if (hasArea(region.area1)) {
+            sido = region.area1.name;
+        }
+
+        if (hasArea(region.area2)) {
+            sigugun = region.area2.name;
+        }
+
+        if (hasArea(region.area3)) {
+            dongmyun = region.area3.name;
+        }
+
+        if (hasArea(region.area4)) {
+            ri = region.area4.name;
+        }
+
+        if (land) {
+            if (hasData(land.number1)) {
+                if (hasData(land.type) && land.type === '2') {
+                    rest += '산';
+                }
+
+                rest += land.number1;
+
+                if (hasData(land.number2)) {
+                    rest += ('-' + land.number2);
+                }
+            }
+
+            if (isRoadAddress === true) {
+                if (checkLastString(dongmyun, '면')) {
+                    ri = land.name;
+                } else {
+                    dongmyun = land.name;
+                    ri = '';
+                }
+
+                if (hasAddition(land.addition0)) {
+                    rest += ' ' + land.addition0.value;
+                }
+            }
+        }
+
+        return [sido, sigugun, dongmyun, ri, rest].join(' ');
+    }
+
+    function hasArea(area) {
+        return !!(area && area.name && area.name !== '');
+    }
+
+    function hasData(data) {
+        return !!(data && data !== '');
+    }
+
+    function checkLastString(word, lastString) {
+        return new RegExp(lastString + '$').test(word);
+    }
+
+    function hasAddition(addition) {
+        return !!(addition && addition.value);
+    }
+
+    naver.maps.onJSContentLoaded = initGeocoder;
+</script>
